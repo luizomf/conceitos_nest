@@ -11,4 +11,9 @@ export class AppController {
   getHello(): string {
     return 'Qualquer coisa.';
   }
+
+  @Get('exemplo')
+  exemplo() {
+    return 'Exemplo de rota'
+  }
 }
