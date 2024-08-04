@@ -7,13 +7,13 @@ export class AppController {
 
   // Método da solicitação -> Ler (Read) -> CRUD
   // /home/hello
-  @Get('hello') 
+  @Get('hello')
   getHello(): string {
     return 'Qualquer coisa.';
   }
 
   @Get('exemplo')
   exemplo() {
-    return 'Exemplo de rota'
+    return 'Exemplo de rota';
   }
 }
