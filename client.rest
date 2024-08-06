@@ -7,6 +7,12 @@ GET {{baseUrl}}/recados/
 GET {{baseUrl}}/recados/1/
 ###
 POST {{baseUrl}}/recados/
+Content-Type: application/json
+
+{
+    "recado": "Este é o recado que estou enviando.",
+    "nova chave": "outro valor"
+}
 
 ### AppControllerGetHello
 
