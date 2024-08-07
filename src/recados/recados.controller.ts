@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -14,8 +14,9 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post
 export class RecadosController {
     @HttpCode(HttpStatus.OK)
     @Get()
-    findAll() {
-        return 'Essa rota retorna todos os recados';
+    findAll(@Query() pagination: any) {
+        const { limit = 10, offset = 0 } = pagination;
+        return `Retorna todos os recados. Limit=${limit}, Offset=${offset}.`;
     }
 
     @Get(':id')

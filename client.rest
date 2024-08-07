@@ -3,6 +3,8 @@
 # RECADOS
 ### Lista todos os recados
 GET {{baseUrl}}/recados/
+?limit=10
+&offset=0
 ### Lista apenas um recado
 GET {{baseUrl}}/recados/1/
 ### Cria um recado
