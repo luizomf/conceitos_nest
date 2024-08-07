@@ -1,4 +1,14 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+
+// CRUD
+// Create -> POST -> Criar um recado
+// Read -> GET -> Ler todos os recados
+// Read -> GET -> Ler apenas um recado
+// Update -> PATCH / PUT -> Atualizar um recado
+// Delete -> DELETE -> Apagar um recado
+
+// PATCH é utilizado para atualizar dados de um recurso
+// PUT é utilizado para atualizar um recurso inteiro
 
 @Controller('recados')
 export class RecadosController {
@@ -16,5 +26,13 @@ export class RecadosController {
     @Post()
     create(@Body() body: any) {
         return body;
+    }
+
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() body: any) {
+        return {
+            id,
+            ...body
+        }
     }
 }
