@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 
 @Controller('recados')
 export class RecadosController {
+    @HttpCode(HttpStatus.OK)
     @Get()
     findAll() {
         return 'Essa rota retorna todos os recados';

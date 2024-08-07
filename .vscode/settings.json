@@ -1,4 +1,71 @@
 {
-    "window.zoomLevel": 1,
-    "editor.fontSize": 24
+  "window.zoomLevel": 0,
+  "editor.fontSize": 24,
+  "terminal.integrated.fontSize": 24,
+  "editor.suggestFontSize": 24,
+  "debug.console.fontSize": 24,
+  "editor.minimap.enabled": false,
+  // Window
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.enablePreview": false,
+  "workbench.list.smoothScrolling": true,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.localHistory.enabled": true,
+  "workbench.fontAliasing": "antialiased",
+  "workbench.layoutControl.enabled": false,
+  // Explorer
+  "explorer.confirmDelete": true,
+  "explorer.compactFolders": false,
+  // Editor and breadcrumbs
+  "breadcrumbs.enabled": true,
+  "editor.largeFileOptimizations": true,
+  "editor.renderControlCharacters": true,
+  "editor.tabSize": 2,
+  "editor.renderLineHighlight": "gutter",
+  "editor.rulers": [
+    79,
+    120
+  ],
+  "editor.detectIndentation": true,
+  "editor.snippetSuggestions": "bottom",
+  "editor.wordBasedSuggestions": "off",
+  "editor.suggest.localityBonus": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.suggestSelection": "first",
+  "editor.suggest.showValues": true,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.quickSuggestionsDelay": 1,
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.parameterHints.enabled": false,
+  "editor.formatOnPaste": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.mouseWheelScrollSensitivity": 1,
+  "editor.fastScrollSensitivity": 4,
+  "editor.smoothScrolling": true,
+  "editor.mouseWheelZoom": true,
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.accessibilitySupport": "off",
+  "editor.renderWhitespace": "all", // gain space, but remove break points
+  "editor.glyphMargin": true,
+  "editor.inlineSuggest.enabled": true,
+  // Git
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  "diffEditor.ignoreTrimWhitespace": true,
+  // Eslint and fix on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll": "explicit"
+  },
 }
