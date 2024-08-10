@@ -1,8 +1,8 @@
 export class Recado {
-  id: number;
+  id: number; // Não
   texto: string;
   de: string;
   para: string;
-  lido: boolean;
-  data: Date;
+  lido: boolean; // Não
+  data: Date; // Não
 }
