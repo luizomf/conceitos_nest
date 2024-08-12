@@ -23,11 +23,8 @@ PATCH {{baseUrl}}/recados/2/
 Content-Type: application/json
 
 {
-    "texto": "ATUALIZAR Recado",
-    "de": "Joana",
-    "para": "João",
-    "lido": false,
-    "data": "2024-08-08T11:32:39.624Z"
+    "texto": "Recado",
+    "lido": true
 }
 ### Apaga um recado
 DELETE {{baseUrl}}/recados/2/
