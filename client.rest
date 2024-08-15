@@ -17,12 +17,11 @@ Content-Type: application/json
     "para": "João"
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/2/
+PATCH {{baseUrl}}/recados/4/
 Content-Type: application/json
 
 {
-    "texto": "Recado",
-    "lido": true
+    "lido": false
 }
 ### Apaga um recado
 DELETE {{baseUrl}}/recados/5/
