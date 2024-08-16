@@ -17,10 +17,11 @@ Content-Type: application/json
     "paraId": 12
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/4/
+PATCH {{baseUrl}}/recados/14/
 Content-Type: application/json
 
 {
+    "texto": "De Leo para Joana",
     "lido": false
 }
 ### Apaga um recado
