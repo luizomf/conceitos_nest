@@ -12,9 +12,9 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-    "texto": "De Joana para Leo",
-    "deId": 12,
-    "paraId": 13
+    "texto": "De Leo para Joana",
+    "deId": 14,
+    "paraId": 12
 }
 ### Atualiza um recado
 PATCH {{baseUrl}}/recados/4/
@@ -56,7 +56,7 @@ Content-Type: application/json
     "password": "aaaaaa"
 }
 ### Apaga um recado
-DELETE {{baseUrl}}/pessoas/3/
+DELETE {{baseUrl}}/pessoas/10/
 
 
 
