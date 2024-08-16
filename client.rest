@@ -27,7 +27,9 @@ Content-Type: application/json
 DELETE {{baseUrl}}/recados/5/
 
 
+
 # 
+
 
 
 # Pessoas
@@ -46,6 +48,20 @@ Content-Type: application/json
     "password": "123456",
     "nome": "Luiz"
 }
+### Atualiza um recado
+PATCH {{baseUrl}}/pessoas/10/
+Content-Type: application/json
+
+{
+    "password": "654321",
+    "nome": "João"
+}
+### Apaga um recado
+DELETE {{baseUrl}}/pessoas/3/
+
+
+
+#
 
 
 ### AppControllerGetHello
