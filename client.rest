@@ -6,7 +6,7 @@ GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
 ### Lista apenas um recado
-GET {{baseUrl}}/recados/12/
+GET {{baseUrl}}/recados/1/
 ### Cria um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
@@ -17,7 +17,7 @@ Content-Type: application/json
     "paraId": 12
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/14/
+PATCH {{baseUrl}}/recados/1/
 Content-Type: application/json
 
 {
