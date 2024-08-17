@@ -49,14 +49,14 @@ Content-Type: application/json
     "password": "123456",
     "nome": "leo"
 }
-### Atualiza um recado
+### Atualiza uma pessoa
 PATCH {{baseUrl}}/pessoas/10/
 Content-Type: application/json
 
 {
     "password": "aaaaaa"
 }
-### Apaga um recado
+### Apaga uma pessoa
 DELETE {{baseUrl}}/pessoas/10/
 
 
