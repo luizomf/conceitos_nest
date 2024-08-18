@@ -5,6 +5,7 @@
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
+Authorization: Bearer 123456
 ### Lista apenas um recado
 GET {{baseUrl}}/recados/30/
 ### Cria um recado
