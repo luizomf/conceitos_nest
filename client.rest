@@ -6,7 +6,7 @@ GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
 ### Lista apenas um recado
-GET {{baseUrl}}/recados/1/
+GET {{baseUrl}}/recados/30/
 ### Cria um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
