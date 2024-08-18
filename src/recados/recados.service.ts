@@ -20,7 +20,7 @@ export class RecadosService {
   }
 
   async findAll(paginationDto?: PaginationDto) {
-    console.log('RecadosService findAll executado');
+    // console.log('RecadosService findAll executado');
 
     const { limit = 10, offset = 0 } = paginationDto;
 
