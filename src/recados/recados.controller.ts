@@ -12,6 +12,7 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { RecadosUtils } from './recados.utils';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -28,7 +29,10 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('recados')
 export class RecadosController {
-  constructor(private readonly recadosService: RecadosService) {}
+  constructor(
+    private readonly recadosService: RecadosService,
+    private readonly recadosUtils: RecadosUtils,
+  ) {}
 
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
@@ -38,6 +42,7 @@ export class RecadosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    console.log(this.recadosUtils.inverteString('Luiz'));
     return this.recadosService.findOne(+id);
   }
 
