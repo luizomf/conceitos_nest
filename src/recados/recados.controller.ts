@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Patch,
   Post,
@@ -13,6 +14,7 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { RecadosUtils } from './recados.utils';
+import { SERVER_NAME } from 'src/common/constants/server-name.constant';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -32,10 +34,13 @@ export class RecadosController {
   constructor(
     private readonly recadosService: RecadosService,
     private readonly recadosUtils: RecadosUtils,
+    @Inject(SERVER_NAME)
+    private readonly serverName: string,
   ) {}
 
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
+    console.log(this.serverName);
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
   }
