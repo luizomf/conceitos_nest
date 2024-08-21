@@ -18,7 +18,7 @@ Content-Type: application/json
     "paraId": 12
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/1/
+PATCH {{baseUrl}}/recados/34/
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
     "lido": false
 }
 ### Apaga um recado
-DELETE {{baseUrl}}/recados/5/
+DELETE {{baseUrl}}/recados/34/
 
 
 
@@ -40,25 +40,25 @@ GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
 ### Lista apenas uma pessoa
-GET {{baseUrl}}/pessoas/3/
+GET {{baseUrl}}/pessoas/14/
 ### Cria uma pessoa
 POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "leo@email.com",
+    "email": "le2o@email.com",
     "password": "123456",
     "nome": "leo"
 }
 ### Atualiza uma pessoa
-PATCH {{baseUrl}}/pessoas/10/
+PATCH {{baseUrl}}/pessoas/16/
 Content-Type: application/json
 
 {
     "password": "aaaaaa"
 }
 ### Apaga uma pessoa
-DELETE {{baseUrl}}/pessoas/10/
+DELETE {{baseUrl}}/pessoas/16/
 
 
 
