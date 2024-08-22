@@ -14,7 +14,12 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { RecadosUtils } from './recados.utils';
-import { SERVER_NAME } from 'src/common/constants/server-name.constant';
+import { RegexProtocol } from 'src/common/regex/regex.protocol';
+import {
+  ONLY_LOWERCASE_LETTERS_REGEX,
+  REMOVE_SPACES_REGEX,
+  SERVER_NAME,
+} from './recados.constant';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -36,10 +41,16 @@ export class RecadosController {
     private readonly recadosUtils: RecadosUtils,
     @Inject(SERVER_NAME)
     private readonly serverName: string,
+    @Inject(REMOVE_SPACES_REGEX)
+    private readonly removeSpacesRegex: RegexProtocol,
+    @Inject(ONLY_LOWERCASE_LETTERS_REGEX)
+    private readonly onlyLowercaseLettersRegex: RegexProtocol,
   ) {}
 
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
+    console.log(this.removeSpacesRegex.execute(this.serverName));
+    console.log(this.onlyLowercaseLettersRegex.execute(this.serverName));
     console.log(this.serverName);
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
