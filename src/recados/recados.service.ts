@@ -7,10 +7,6 @@ import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 
-// Scope.DEFAULT -> O provider em questão é um singleton
-// Scope.REQUEST -> O provider em questão é instanciado a cada requisição
-// Scope.TRANSIENT -> É criada uma instancia do provider para cada classe que injetar este provider
-
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
   private count = 0;
@@ -19,10 +15,7 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
-  ) {
-    this.count++;
-    console.log(`RecadosService ${this.count}`);
-  }
+  ) {}
 
   throwNotFoundError() {
     throw new NotFoundException('Recado não encontrado');
