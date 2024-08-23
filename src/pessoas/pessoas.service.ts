@@ -12,10 +12,15 @@ import { Repository } from 'typeorm';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class PessoasService {
+  private count = 0;
+
   constructor(
     @InjectRepository(Pessoa)
     private readonly pessoaRepository: Repository<Pessoa>,
-  ) {}
+  ) {
+    this.count++;
+    console.log(`PessoasService ${this.count}`);
+  }
 
   async create(createPessoaDto: CreatePessoaDto) {
     try {
@@ -48,6 +53,9 @@ export class PessoasService {
   }
 
   async findOne(id: number) {
+    this.count++;
+    console.log(`PessoasService: ${this.count} - findOne`);
+
     const pessoa = await this.pessoaRepository.findOneBy({
       id,
     });

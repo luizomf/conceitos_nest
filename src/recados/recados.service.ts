@@ -13,11 +13,16 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
+  private count = 0;
+
   constructor(
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
-  ) {}
+  ) {
+    this.count++;
+    console.log(`RecadosService ${this.count}`);
+  }
 
   throwNotFoundError() {
     throw new NotFoundException('Recado não encontrado');
