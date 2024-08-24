@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
@@ -6,7 +6,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { ConfigService } from '@nestjs/config';
+import { ConfigType } from '@nestjs/config';
+import recadosConfig from './recados.config';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
@@ -16,12 +17,10 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
-    private readonly configService: ConfigService,
+    @Inject(recadosConfig.KEY)
+    private readonly recadosConfiguration: ConfigType<typeof recadosConfig>,
   ) {
-    const databaseUsername =
-      this.configService.get<string>('DATABASE_USERNAME');
-    console.log({ databaseUsername });
-    console.log('proccess.env', process.env.DATABASE_USERNAME);
+    console.log(recadosConfiguration);
   }
 
   throwNotFoundError() {
