@@ -6,29 +6,29 @@
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: Bearer {{authToken}}
 ### Lista apenas um recado
 GET {{baseUrl}}/recados/30/
 ### Cria um recado
 POST {{baseUrl}}/recados/
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "texto": "De Leo para Joana",
-    "deId": 14,
+    "texto": "De LUIZ para Joana",
     "paraId": 12
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/34/
+PATCH {{baseUrl}}/recados/38/
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "texto": "De Leo para Joana",
-    "lido": false
+    "texto": "De LUIZ para Joana",
+    "lido": true
 }
 ### Apaga um recado
-DELETE {{baseUrl}}/recados/34/
-
+DELETE {{baseUrl}}/recados/38/
+Authorization: Bearer {{authToken}}
 
 
 # 
@@ -78,7 +78,7 @@ POST {{baseUrl}}/auth/
 Content-Type: application/json
 
 {
-    "email": "joao@email.com",
+    "email": "luiz@email.com",
     "password": "123456"
 }
 
