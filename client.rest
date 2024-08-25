@@ -46,9 +46,9 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "leo3@email.com",
+    "email": "luiz@email.com",
     "password": "123456",
-    "nome": "leo"
+    "nome": "Luiz"
 }
 ### Atualiza uma pessoa
 PATCH {{baseUrl}}/pessoas/23/
@@ -75,6 +75,9 @@ Content-Type: application/json
     "email": "luiz@email.com",
     "password": "123456"
 }
+
+
+
 #
 
 
