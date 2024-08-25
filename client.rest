@@ -49,20 +49,20 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "luiz@email.com",
+    "email": "joao@email.com",
     "password": "123456",
-    "nome": "Luiz"
+    "nome": "João"
 }
 ### Atualiza uma pessoa
-PATCH {{baseUrl}}/pessoas/23/
+PATCH {{baseUrl}}/pessoas/29/
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "nome": "aaaaaa"
+    "nome": "JOÃO"
 }
 ### Apaga uma pessoa
-DELETE {{baseUrl}}/pessoas/16/
+DELETE {{baseUrl}}/pessoas/29/
 Authorization: Bearer {{authToken}}
 
 
@@ -78,7 +78,7 @@ POST {{baseUrl}}/auth/
 Content-Type: application/json
 
 {
-    "email": "luiz@email.com",
+    "email": "joao@email.com",
     "password": "123456"
 }
 
