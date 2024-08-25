@@ -1,11 +1,12 @@
 @baseUrl = http://localhost:3000
+@authToken = {{authenticate.response.body.accessToken}}
 
 # RECADOS
 ### Lista todos os recados
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: Bearer 123456
+Authorization: Bearer {{authToken}}
 ### Lista apenas um recado
 GET {{baseUrl}}/recados/30/
 ### Cria um recado
@@ -39,7 +40,7 @@ DELETE {{baseUrl}}/recados/34/
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI1LCJlbWFpbCI6Imx1aXpAZW1haWwuY29tIiwiaWF0IjoxNzI0NTg3MzIzLCJleHAiOjE3MjQ1OTA5MjMsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.FGCyOevIR8ZZPCguVk9c9MRORJzrf6slfIusUyFzBuw
+Authorization: Bearer {{authToken}}
 ### Lista apenas uma pessoa
 GET {{baseUrl}}/pessoas/14/
 ### Cria uma pessoa
@@ -68,7 +69,8 @@ DELETE {{baseUrl}}/pessoas/16/
 
 
 # AUTH
-### Lista todas as pessoas
+### Autenticação
+# @name authenticate
 POST {{baseUrl}}/auth/
 Content-Type: application/json
 
