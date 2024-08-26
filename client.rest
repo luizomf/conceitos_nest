@@ -1,5 +1,6 @@
 @baseUrl = http://localhost:3000
 @authToken = {{authenticate.response.body.accessToken}}
+@refreshToken = {{authenticate.response.body.refreshToken}}
 
 # RECADOS
 ### Lista todos os recados
@@ -81,28 +82,11 @@ Content-Type: application/json
     "email": "luiz@email.com",
     "password": "123456"
 }
+### Re-Autenticação
+# @name reAuthenticate
+POST {{baseUrl}}/auth/refresh/
+Content-Type: application/json
 
-
-
-#
-
-
-### AppControllerGetHello
-
-# @name AppControllerGetHello
-GET {{baseUrl}}/home/hello
-
-### ExemploDeRota
-
-# @name ExemploDeRota
-GET {{baseUrl}}/home/exemplo/
-
-### ConceitosManualController Home
-
-# @name ConceitosManualControllerHome
-GET {{baseUrl}}/conceitos-manual/
-
-### ConceitosAutomaticoController Home
-
-# @name ConceitosAutomaticoControllerHome
-GET {{baseUrl}}/conceitos-automatico/
+{
+    "refreshToken": "{{refreshToken}}"
+}
