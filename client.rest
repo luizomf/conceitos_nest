@@ -19,7 +19,7 @@ Content-Type: application/json
     "paraId": 12
 }
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/38/
+PATCH {{baseUrl}}/recados/39/
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
@@ -28,7 +28,7 @@ Content-Type: application/json
     "lido": true
 }
 ### Apaga um recado
-DELETE {{baseUrl}}/recados/38/
+DELETE {{baseUrl}}/recados/39/
 Authorization: Bearer {{authToken}}
 
 
