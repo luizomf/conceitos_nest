@@ -13,12 +13,11 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { AuthTokenGuard } from 'src/auth/guards/auth-token.guard';
 import { TokenPayloadParam } from 'src/auth/params/token-payload.param';
 import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
-import { RoutePolicyGuard } from 'src/auth/guards/route-policy.guard';
 import { SetRoutePolicy } from 'src/auth/decorators/set-route-policy.decorator';
 import { RoutePolicies } from 'src/auth/enum/route-policies.enum';
+import { AuthAndPolicyGuard } from 'src/auth/guards/auth-and-policy.guard';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -33,13 +32,11 @@ import { RoutePolicies } from 'src/auth/enum/route-policies.enum';
 // DTO - Data Transfer Object -> Objeto de transferência de dados
 // DTO -> Objeto simples -> Validar dados / Transformar dados
 
-@UseGuards(RoutePolicyGuard)
 @Controller('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
   @Get()
-  @SetRoutePolicy(RoutePolicies.findAllRecados)
   async findAll(@Query() paginationDto: PaginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
@@ -50,7 +47,8 @@ export class RecadosController {
     return this.recadosService.findOne(+id);
   }
 
-  @UseGuards(AuthTokenGuard)
+  @SetRoutePolicy(RoutePolicies.createRecado)
+  @UseGuards(AuthAndPolicyGuard)
   @Post()
   create(
     @Body() createRecadoDto: CreateRecadoDto,
@@ -59,7 +57,8 @@ export class RecadosController {
     return this.recadosService.create(createRecadoDto, tokenPayload);
   }
 
-  @UseGuards(AuthTokenGuard)
+  @SetRoutePolicy(RoutePolicies.updateRecado)
+  @UseGuards(AuthAndPolicyGuard)
   @Patch(':id')
   update(
     @Param('id') id: number,
@@ -69,7 +68,8 @@ export class RecadosController {
     return this.recadosService.update(id, updateRecadoDto, tokenPayload);
   }
 
-  @UseGuards(AuthTokenGuard)
+  @SetRoutePolicy(RoutePolicies.deleteRecado)
+  @UseGuards(AuthAndPolicyGuard)
   @Delete(':id')
   remove(
     @Param('id') id: number,
