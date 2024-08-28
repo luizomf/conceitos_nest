@@ -50,9 +50,10 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "joao@email.com",
+    "email": "joao2@email.com",
     "password": "123456",
-    "nome": "João"
+    "nome": "João",
+    "routePolicies": ["createRecado", "findOneRecado"]
 }
 ### Atualiza uma pessoa
 PATCH {{baseUrl}}/pessoas/29/
@@ -63,7 +64,7 @@ Content-Type: application/json
     "nome": "JOÃO"
 }
 ### Apaga uma pessoa
-DELETE {{baseUrl}}/pessoas/29/
+DELETE {{baseUrl}}/pessoas/34/
 Authorization: Bearer {{authToken}}
 
 
@@ -79,7 +80,7 @@ POST {{baseUrl}}/auth/
 Content-Type: application/json
 
 {
-    "email": "luiz@email.com",
+    "email": "joao2@email.com",
     "password": "123456"
 }
 ### Re-Autenticação
