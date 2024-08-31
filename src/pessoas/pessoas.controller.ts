@@ -19,7 +19,6 @@ import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as path from 'path';
 import * as fs from 'fs/promises';
-import { randomUUID } from 'crypto';
 
 @Controller('pessoas')
 export class PessoasController {
