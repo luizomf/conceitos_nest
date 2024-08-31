@@ -104,10 +104,10 @@ Authorization: Bearer {{authToken}}
 Content-Type: multipart/form-data; boundary=----BoundaryDelimitadorHttp
 
 ------BoundaryDelimitadorHttp
-Content-Disposition: form-data; name="file"; filename="man.png"
-Content-Type: image/png
+Content-Disposition: form-data; name="file"; filename="nest.jpg"
+Content-Type: image/jpeg
 
-< ./dev/images/man.png
+< ./dev/images/nest.jpg
 ------BoundaryDelimitadorHttp--
 ### Ver foto
-GET {{baseUrl}}/pictures/39.png
+GET {{baseUrl}}/pictures/39.jpg
