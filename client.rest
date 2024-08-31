@@ -108,4 +108,9 @@ Content-Disposition: form-data; name="file"; filename="man.png"
 Content-Type: image/png
 
 < ./dev/images/man.png
+------BoundaryDelimitadorHttp
+Content-Disposition: form-data; name="file"; filename="cat.png"
+Content-Type: image/png
+
+< ./dev/images/cat.png
 ------BoundaryDelimitadorHttp--
