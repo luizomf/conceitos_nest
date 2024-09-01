@@ -1,19 +1,38 @@
+import { Repository } from 'typeorm';
+import { PessoasService } from './pessoas.service';
+import { Pessoa } from './entities/pessoa.entity';
+import { HashingService } from 'src/auth/hashing/hashing.service';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+
 describe('PessoasService', () => {
+  let pessoaService: PessoasService;
+  let pessoaRepository: Repository<Pessoa>;
+  let hashingService: HashingService;
+
   beforeEach(async () => {
-    // console.log('Isso será executado antes de cada teste');
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        PessoasService,
+        {
+          provide: getRepositoryToken(Pessoa),
+          useValue: {},
+        },
+        {
+          provide: HashingService,
+          useValue: {},
+        },
+      ],
+    }).compile();
+
+    pessoaService = module.get<PessoasService>(PessoasService);
+    pessoaRepository = module.get<Repository<Pessoa>>(
+      getRepositoryToken(Pessoa),
+    );
+    hashingService = module.get<HashingService>(HashingService);
   });
 
-  // Caso - Teste
-  it('deve somar o numero1 e o numero2 e resultar em 3', () => {
-    // Configurar - Arrange
-    const numero1 = 1;
-    const numero2 = 2;
-
-    // Fazer alguma ação - Act
-    const result = numero1 + numero2;
-
-    // Conferir se essa ação foi a esperada - Assert
-    // === 3 = toBe
-    expect(result).toBe(3);
+  it('pessoaService deve estar definido', () => {
+    expect(pessoaService).toBeDefined();
   });
 });
