@@ -45,34 +45,50 @@ describe('PessoasService', () => {
   describe('create', () => {
     it('deve criar uma nova pessoa', async () => {
       // Arange
-      // CreatePessoaDto
       const createPessoaDto: CreatePessoaDto = {
         email: 'luiz@email.com',
         nome: 'Luiz',
         password: '123456',
       };
       const passwordHash = 'HASHDESENHA';
+      const novaPessoa = {
+        id: 1,
+        nome: createPessoaDto.nome,
+        email: createPessoaDto.email,
+        passwordHash,
+      };
 
-      // Que o hashing service tenha o método hash
-      // Saber se o hashing service foi chamado com CreatePessoaDto
-      // Saber se o pessoaRepository.create foi chamado com dados pessoa
-      // Saber se pessoaRepository.save foi chamado com a pessoa criada
-      // O retorno final deve ser a nova pessoa criada -> expect
-
+      // Como o valor retornado por hashingService.hash é necessário
+      // vamos simular este valor.
       jest.spyOn(hashingService, 'hash').mockResolvedValue(passwordHash);
+      // Como a pessoa retornada por pessoaRepository.create é necessária em
+      // pessoaRepository.save. Vamos simular este valor.
+      jest.spyOn(pessoaRepository, 'create').mockReturnValue(novaPessoa as any);
 
-      // Act
-      await pessoaService.create(createPessoaDto);
+      // Act -> Ação
+      const result = await pessoaService.create(createPessoaDto);
 
       // Assert
+      // O método hashingService.hash foi chamado com createPessoaDto.password?
       expect(hashingService.hash).toHaveBeenCalledWith(
         createPessoaDto.password,
       );
+
+      // O método pessoaRepository.create foi chamado com os dados da nova
+      // pessoa com o hash de senha gerado por hashingService.hash?
       expect(pessoaRepository.create).toHaveBeenCalledWith({
         nome: createPessoaDto.nome,
-        passwordHash: 'HASHDESENHA',
+        passwordHash,
         email: createPessoaDto.email,
       });
+
+      // O método pessoaRepository.save foi chamado com os dados da nova
+      // pessoa gerada por pessoaRepository.create?
+      expect(pessoaRepository.save).toHaveBeenCalledWith(novaPessoa);
+
+      // O resultado do método pessoaService.create retornou a nova
+      // pessoa criada?
+      expect(result).toEqual(novaPessoa);
     });
   });
 });
