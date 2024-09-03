@@ -23,6 +23,7 @@ describe('PessoasService', () => {
             create: jest.fn(),
             findOneBy: jest.fn(),
             find: jest.fn(),
+            preload: jest.fn(),
           },
         },
         {
@@ -162,6 +163,44 @@ describe('PessoasService', () => {
           id: 'desc',
         },
       });
+    });
+  });
+
+  describe('update', () => {
+    it('deve atualizar uma pessoa se for autorizado', async () => {
+      // Arrange
+      const pessoaId = 1;
+      const updatePessoaDto = { nome: 'Joana', password: '654321' };
+      const tokenPayload = { sub: pessoaId } as any;
+      const passwordHash = 'HASHDESENHA';
+      const updatedPessoa = { id: pessoaId, nome: 'Joana', passwordHash };
+
+      jest.spyOn(hashingService, 'hash').mockResolvedValueOnce(passwordHash);
+      jest
+        .spyOn(pessoaRepository, 'preload')
+        .mockResolvedValue(updatedPessoa as any);
+      jest
+        .spyOn(pessoaRepository, 'save')
+        .mockResolvedValue(updatedPessoa as any);
+
+      // Act
+      const result = await pessoasService.update(
+        pessoaId,
+        updatePessoaDto,
+        tokenPayload,
+      );
+
+      // Assert
+      expect(hashingService.hash).toHaveBeenCalledWith(
+        updatePessoaDto.password,
+      );
+      expect(pessoaRepository.preload).toHaveBeenCalledWith({
+        id: pessoaId,
+        nome: updatePessoaDto.nome,
+        passwordHash,
+      });
+      expect(pessoaRepository.save).toHaveBeenCalledWith(updatedPessoa);
+      expect(result).toEqual(updatedPessoa);
     });
   });
 });
