@@ -11,6 +11,7 @@ import { GlobalConfigModule } from 'src/global-config/global-config.module';
 import { AuthModule } from 'src/auth/auth.module';
 import * as path from 'path';
 import appConfig from 'src/app/config/app.config';
+import { CreatePessoaDto } from 'src/pessoas/dto/create-pessoa.dto';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -54,7 +55,7 @@ describe('AppController (e2e)', () => {
 
   describe('/pessoas (POST)', () => {
     it('deve criar uma pessoa com sucesso', async () => {
-      const createPessoaDto = {
+      const createPessoaDto: CreatePessoaDto = {
         email: 'luiz@email.com',
         password: '123456',
         nome: 'Luiz',
@@ -74,6 +75,46 @@ describe('AppController (e2e)', () => {
         picture: '',
         id: expect.any(Number),
       });
+    });
+
+    it('deve gerar um erro de e-mail já existe', async () => {
+      const createPessoaDto: CreatePessoaDto = {
+        email: 'luiz@email.com',
+        nome: 'Luiz',
+        password: '123456',
+      };
+
+      await request(app.getHttpServer())
+        .post('/pessoas')
+        .send(createPessoaDto)
+        .expect(HttpStatus.CREATED);
+
+      const response = await request(app.getHttpServer())
+        .post('/pessoas')
+        .send(createPessoaDto)
+        .expect(HttpStatus.CONFLICT);
+
+      expect(response.body.message).toBe('E-mail já está cadastrado.');
+    });
+
+    it('deve gerar um erro de senha curta', async () => {
+      const createPessoaDto: CreatePessoaDto = {
+        email: 'luiz@email.com',
+        nome: 'Luiz',
+        password: '123', // Este campo é inválido
+      };
+
+      const response = await request(app.getHttpServer())
+        .post('/pessoas')
+        .send(createPessoaDto)
+        .expect(HttpStatus.BAD_REQUEST);
+
+      expect(response.body.message).toEqual([
+        'password must be longer than or equal to 5 characters',
+      ]);
+      expect(response.body.message).toContain(
+        'password must be longer than or equal to 5 characters',
+      );
     });
   });
 });
