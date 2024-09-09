@@ -103,6 +103,7 @@ export class RecadosService {
       para,
       lido: false,
       data: new Date(),
+      campo: 'TESTANDO',
     };
 
     const recado = await this.recadoRepository.create(novoRecado);

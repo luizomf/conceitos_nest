@@ -2,6 +2,7 @@
 !!! ATENÇÃO !!!
 LEMBRETE package-lock.json
 
+# DOMÍNIO
 
 # SERVIDOR
 sudo apt update -y
@@ -18,6 +19,8 @@ create user USUARIO with encrypted password 'SENHA';
 CREATE DATABASE NOMEDABASE WITH OWNER USUARIO;
 GRANT ALL PRIVILEGES ON DATABASE NOMEDABASE TO USUARIO;
 
+sudo systemctl restart postgresql
+
 
 # NODE
 # installs nvm (Node Version Manager)
@@ -30,6 +33,10 @@ nvm install 20
 LEMBRETE package-lock.json
 
 
+# BAIXAR O CÓDIGO DO GITHUB
+git clone ENDERECO_GITHUN_SSH
+
+
 # .env
 DATABASE_TYPE='postgres'
 DATABASE_HOST='localhost'
@@ -40,7 +47,7 @@ DATABASE_PASSWORD='nestjs'
 DATABASE_AUTOLOADENTITIES=1
 DATABASE_SYNCHRONIZE=1
 
-JWT_SECRET=c959b0d09d4dc1014cb4ff5487a730821537fda018b4913fcff023018a2f0742285206dbb95c6d43eeb595f04adae14e8ee99e978aa5e0a761dc6616590e04d6
+JWT_SECRET=1d13afba3b3835d8e7a475803cf75f3f9ff9907d6b3ff29f2b4f27037cae2f2f0e760ea2797ed3fa2b15af9f1cd5f1f20d2be6c98370bd2fc130955660e1095ce790013ceefa49e47c3c5816214f02e494fe1472f1a378866272767f63b503d72365081a7a626ccc85a9cf04447a0785cfb48a35583ebb10b50e02c0e68b5932a871538247f3ae889911949126a3813ac416d46c63869098fa4438fba3e59aed90e947659d0edc2adcc64dac1dad4f2c303352153c9eab11abc9d68b077ab7aadf5c5aa11cbecd87482f6043a071842aebd92898506e15b404464832426ead2fceb3f13a1362d641b693d8e267db51972f7ac36cb241a3014a6d77c73ff26250
 JWT_TOKEN_AUDIENCE=http://localhost:3000
 JWT_TOKEN_ISSUER=http://localhost:3000
 JWT_TTL=3600
@@ -125,7 +132,7 @@ server {
 	index index.html index.htm index.nginx-debian.html index.php;
 
 	location / {
-		proxy_pass http://localhost:1337;
+		proxy_pass http://localhost:3000;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection 'upgrade';
@@ -174,7 +181,7 @@ server {
 }
 
 
-sudo ln /etc/nginx/sites-available/___SEUDOMINIO.COM.BR___ /etc/nginx/sites-enabled/___SEUDOMINIO.COM.BR___
+sudo ln /etc/nginx/sites-available/nestjs.otaviomiranda.com.br /etc/nginx/sites-enabled/nestjs.otaviomiranda.com.br
 sudo systemctl  restart nginx
 
 
@@ -187,9 +194,9 @@ pm2 save
 
 
 # NGINX UPLOAD
- sudo nano /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 
-         client_max_body_size 5M;
+        client_max_body_size 5M;
 
 sudo systemctl restart nginx
 ```
