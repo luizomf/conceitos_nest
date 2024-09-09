@@ -1,4 +1,4 @@
-### @baseUrl = http://127.0.0.1:3000
+# @baseUrl = http://127.0.0.1:3000
 @baseUrl = https://nestjs.otaviomiranda.com.br
 @authToken = {{authenticate.response.body.accessToken}}
 @refreshToken = {{authenticate.response.body.refreshToken}}
