@@ -118,7 +118,6 @@ export class RecadosService {
         id: recado.para.id,
         nome: recado.para.nome,
       },
-      CAMPO: true,
     };
   }
 
