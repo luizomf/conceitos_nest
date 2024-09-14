@@ -1,5 +1,4 @@
-# @baseUrl = http://127.0.0.1:3000
-@baseUrl = https://nestjs.otaviomiranda.com.br
+@baseUrl = http://127.0.0.1:3000
 @authToken = {{authenticate.response.body.accessToken}}
 @refreshToken = {{authenticate.response.body.refreshToken}}
 
@@ -16,8 +15,8 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "texto": "De LUIZ para Joana",
-    "paraId": 1
+    "texto": "Este texto deve chegar no e-mail. \nAqui vem na próxima linha.",
+    "paraId": 39
 }
 ### Atualiza um recado
 PATCH {{baseUrl}}/recados/70/

@@ -19,12 +19,12 @@ export class EmailService {
 
   async sendEmail(to: string, subject: string, content: string) {
     const mailOptions = {
-      from: `"No Reply" <${process.env.EMAIL_FROM}>`, // De quem está enviando
+      from: `"Daqui" <${process.env.EMAIL_FROM}>`, // De quem está enviando
       to, // Destinatário
       subject, // Assunto
-      text: content, // Conteúdo do e-mail em texto simples
+      // text: content, // Conteúdo do e-mail em texto simples
       // Se precisar enviar HTML, pode adicionar a propriedade "html"
-      // html: '<b>HTML content</b>',
+      html: `<p><b>Recado: </b> <em>${content}</em></p>`,
     };
 
     await this.transporter.sendMail(mailOptions);
