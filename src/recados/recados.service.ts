@@ -13,6 +13,7 @@ import { PessoasService } from 'src/pessoas/pessoas.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
 import { EmailService } from 'src/email/email.service';
+import { ReponseRecadoDto } from './dto/response-recado.dto';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
@@ -29,7 +30,7 @@ export class RecadosService {
     throw new NotFoundException('Recado não encontrado');
   }
 
-  async findAll(paginationDto?: PaginationDto) {
+  async findAll(paginationDto?: PaginationDto): Promise<ReponseRecadoDto[]> {
     const { limit = 10, offset = 0 } = paginationDto;
 
     const recados = await this.recadoRepository.find({
@@ -50,10 +51,11 @@ export class RecadosService {
         },
       },
     });
+
     return recados;
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<ReponseRecadoDto> {
     // const recado = this.recados.find(item => item.id === id);
     const recado = await this.recadoRepository.findOne({
       where: {
@@ -83,7 +85,7 @@ export class RecadosService {
   async create(
     createRecadoDto: CreateRecadoDto,
     tokenPayload: TokenPayloadDto,
-  ) {
+  ): Promise<ReponseRecadoDto> {
     const { paraId } = createRecadoDto;
 
     // Encontrar a pessoa para quem o recado está sendo enviado
@@ -126,7 +128,7 @@ export class RecadosService {
     id: number,
     updateRecadoDto: UpdateRecadoDto,
     tokenPayload: TokenPayloadDto,
-  ) {
+  ): Promise<ReponseRecadoDto> {
     const recado = await this.findOne(id);
 
     if (recado.de.id !== tokenPayload.sub) {
@@ -140,13 +142,18 @@ export class RecadosService {
     return recado;
   }
 
-  async remove(id: number, tokenPayload: TokenPayloadDto) {
+  async remove(
+    id: number,
+    tokenPayload: TokenPayloadDto,
+  ): Promise<ReponseRecadoDto> {
     const recado = await this.findOne(id);
 
     if (recado.de.id !== tokenPayload.sub) {
       throw new ForbiddenException('Esse recado não é seu');
     }
 
-    return this.recadoRepository.remove(recado);
+    await this.recadoRepository.delete(recado.id);
+
+    return recado;
   }
 }
