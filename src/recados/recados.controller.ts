@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -72,8 +73,33 @@ export class RecadosController {
   @ApiBearerAuth() // Autenticação via token
   @Post()
   @ApiOperation({ summary: 'Criar um novo recado' }) // Descrição do endpoint
-  @ApiResponse({ status: 201, description: 'Recado criado com sucesso.' }) // Resposta de criação bem-sucedida
-  @ApiResponse({ status: 400, description: 'Dados inválidos.' }) // Resposta de erro
+  @ApiResponse({
+    status: 201,
+    description: 'Recado criado com sucesso.',
+    type: ReponseRecadoDto,
+    // example: {
+    //   id: 19,
+    //   texto: 'EXEMPLO',
+    //   lido: true,
+    //   data: '2024-09-14T10:00:00.000Z',
+    //   createdAt: '2024-09-10T12:34:56.000Z',
+    //   updatedAt: '2024-09-11T15:20:10.000Z',
+    //   de: {
+    //     id: 0,
+    //     nome: 'string',
+    //   },
+    //   para: {
+    //     id: 0,
+    //     nome: 'string',
+    //   },
+    // },
+  }) // Resposta de criação bem-sucedida
+  @ApiResponse({
+    status: 400,
+    description: 'Dados inválidos.',
+    type: BadRequestException,
+    example: new BadRequestException('Error message').getResponse(),
+  }) // Resposta de erro
   create(
     @Body() createRecadoDto: CreateRecadoDto,
     @TokenPayloadParam() tokenPayload: TokenPayloadDto,
