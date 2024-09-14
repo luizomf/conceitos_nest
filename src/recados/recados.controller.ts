@@ -24,6 +24,7 @@ import {
   ApiQuery,
   ApiParam,
 } from '@nestjs/swagger';
+import { ReponseRecadoDto } from './dto/response-recado.dto';
 
 @ApiTags('recados') // Tag usada para organizar os endpoints
 @Controller('recados')
@@ -44,7 +45,11 @@ export class RecadosController {
     example: 10,
     description: 'Limite de itens por página',
   })
-  @ApiResponse({ status: 200, description: 'Recados retornados com sucesso.' }) // Resposta bem-sucedida
+  @ApiResponse({
+    status: 200,
+    description: 'Recados retornados com sucesso.',
+    type: [ReponseRecadoDto],
+  }) // Resposta bem-sucedida
   async findAll(@Query() paginationDto: PaginationDto) {
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
@@ -53,7 +58,11 @@ export class RecadosController {
   @Get(':id')
   @ApiOperation({ summary: 'Obter um recado específico pelo ID' }) // Descrição da operação
   @ApiParam({ name: 'id', description: 'ID do recado', example: 1 }) // Parâmetro da rota
-  @ApiResponse({ status: 200, description: 'Recado retornado com sucesso.' }) // Resposta bem-sucedida
+  @ApiResponse({
+    status: 200,
+    description: 'Recado retornado com sucesso.',
+    type: ReponseRecadoDto,
+  }) // Resposta bem-sucedida
   @ApiResponse({ status: 404, description: 'Recado não encontrado.' }) // Resposta de erro
   findOne(@Param('id') id: string) {
     return this.recadosService.findOne(+id);
