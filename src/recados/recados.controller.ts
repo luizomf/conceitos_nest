@@ -16,6 +16,7 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { TokenPayloadParam } from 'src/auth/params/token-payload.param';
 import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
 import { AuthTokenGuard } from 'src/auth/guards/auth-token.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -46,6 +47,7 @@ export class RecadosController {
   }
 
   @UseGuards(AuthTokenGuard)
+  @ApiBearerAuth()
   @Post()
   create(
     @Body() createRecadoDto: CreateRecadoDto,
@@ -55,6 +57,7 @@ export class RecadosController {
   }
 
   @UseGuards(AuthTokenGuard)
+  @ApiBearerAuth()
   @Patch(':id')
   update(
     @Param('id') id: number,
@@ -65,6 +68,7 @@ export class RecadosController {
   }
 
   @UseGuards(AuthTokenGuard)
+  @ApiBearerAuth()
   @Delete(':id')
   remove(
     @Param('id') id: number,

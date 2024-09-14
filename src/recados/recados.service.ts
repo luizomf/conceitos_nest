@@ -105,11 +105,11 @@ export class RecadosService {
     const recado = this.recadoRepository.create(novoRecado);
     await this.recadoRepository.save(recado);
 
-    await this.emailService.sendEmail(
-      para.email,
-      `Você recebeu um recado de "${de.nome}" <${de.email}>`,
-      createRecadoDto.texto,
-    );
+    // await this.emailService.sendEmail(
+    //   para.email,
+    //   `Você recebeu um recado de "${de.nome}" <${de.email}>`,
+    //   createRecadoDto.texto,
+    // );
 
     return {
       ...recado,
