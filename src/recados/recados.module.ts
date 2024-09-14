@@ -7,12 +7,14 @@ import { PessoasModule } from 'src/pessoas/pessoas.module';
 import { RecadosUtils } from './recados.utils';
 import { ConfigModule } from '@nestjs/config';
 import recadosConfig from './recados.config';
+import { EmailModule } from 'src/email/email.module';
 
 @Module({
   imports: [
     ConfigModule.forFeature(recadosConfig),
     TypeOrmModule.forFeature([Recado]),
     forwardRef(() => PessoasModule),
+    EmailModule,
   ],
   controllers: [RecadosController],
   providers: [RecadosService, RecadosUtils],

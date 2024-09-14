@@ -1,6 +1,5 @@
 import {
   ForbiddenException,
-  Inject,
   Injectable,
   NotFoundException,
   Scope,
@@ -12,9 +11,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { ConfigType } from '@nestjs/config';
-import recadosConfig from './recados.config';
 import { TokenPayloadDto } from 'src/auth/dto/token-payload.dto';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
@@ -24,11 +22,8 @@ export class RecadosService {
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
-    @Inject(recadosConfig.KEY)
-    private readonly recadosConfiguration: ConfigType<typeof recadosConfig>,
-  ) {
-    // console.log(recadosConfiguration);
-  }
+    private readonly emailService: EmailService,
+  ) {}
 
   throwNotFoundError() {
     throw new NotFoundException('Recado não encontrado');
@@ -105,8 +100,14 @@ export class RecadosService {
       data: new Date(),
     };
 
-    const recado = await this.recadoRepository.create(novoRecado);
+    const recado = this.recadoRepository.create(novoRecado);
     await this.recadoRepository.save(recado);
+
+    await this.emailService.sendEmail(
+      para.email,
+      `Você recebeu um recado de "${de.nome}" <${de.email}>`,
+      createRecadoDto.texto,
+    );
 
     return {
       ...recado,
